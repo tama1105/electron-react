@@ -1,0 +1,32 @@
+{
+  "name": "helloworld",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-scripts": "1.1.4"
+  },
+  
+  "scripts": {
+    // Electron のビルドスクリプト
+    "electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron public",
+    "electron-build": "electron-packager build --platform=all --overwrite --asar",
+
+    // React のビルドスクリプト
+    "react-start": "react-scripts start", // 元の "start" から変更
+    "react-build": "react-scripts build", // 元の "build" から変更
+
+    // 開発時に使用
+    "start": "concurrently \"npm run react-start\" \"npm run electron-dev\"",
+
+    // ビルド時に使用
+    "build": "npm run react-build && npm run electron-build"
+  },
+  "homepage": "./",
+  "devDependencies": {
+    "concurrently": "^3.6.1",
+    "electron": "^2.0.7",
+    "electron-packager": "^12.1.0"
+  }
+}
